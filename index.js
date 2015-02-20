@@ -9,18 +9,27 @@ WeatherApiCall = function (options) {
 };
 
 WeatherApiCall.prototype.call = function (callback) {
-    var weather, returnValues;
-    returnValues = {};
+    var weather, returnValue, self;
+    self = this;
     $.getJSON(this.url, this.options).done(function (data) {
         // avoid having a data key with a value of an object called data
         weather = _.pick(data.data, "current_condition", "weather");
         // make this in to a nice object to work with by picking what we want to use
-        returnValues.currentConditions = getCurrentConditions();
-        // pass in the array index to reuse the function
-        returnValues.tomorrowsConditions = getForcast(1);
-        returnValues.twoDayConditions = getForcast(2);
 
-        callback(returnValues);
+        switch(self.options.reportFor) {
+            case "today":
+                returnValue = getCurrentConditions();
+                break;
+            case "tomorrow":
+                // pass in the array index to reuse the function
+                returnValue = getForcast(1);
+                break;
+            case "twoDay":
+                returnValue = getForcast(2);
+                break;
+        }
+
+        callback(returnValue);
 
         function getCurrentConditions() {
             return _.extend(
@@ -48,25 +57,36 @@ WeatherApiCall.prototype.call = function (callback) {
 };
 
 WeatherApiCall.prototype.setHtml = function () {
-    console.log(
-        _.map(this.data)
-    );
-    var weather = this.data.currentConditions;
-    $("#weather").html(weather.value);
+    var weather = this.data;
+    $("#description").html(weather.value);
+    $("#temperature").html(weather.temp_C || weather.tempC);
+    $("#windSpeed").html(weather.windspeedMiles);
+    $("#weatherCode").html(weather.weatherCode);
+    $("#sunset").html(weather.sunset);
+
+
 };
 
 // functions to run in the dom
 
 $(document).ready(function () {
-    getWeather("leeds", "3");
+    getWeather("leeds", "3", "today");
     $('#DayInTwoDays').html(dayInTwoDays());
 });
 
-function getWeather(city, days) {
+// events
+$(".weather-toggle").click(function(){
+    getWeather("leeds", "3", $(this).val());
+
+    // call the function for the val
+});
+
+function getWeather(city, days, day) {
     var apiCall, options;
     options = {
         q: city,
-        days: days
+        days: days,
+        reportFor: day
     };
     apiCall = new WeatherApiCall(options);
     apiCall.call(function (result) {
