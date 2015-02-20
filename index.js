@@ -49,16 +49,17 @@ WeatherApiCall.prototype.call = function (callback) {
 
 WeatherApiCall.prototype.setHtml = function () {
     console.log(
-        _.each(this.data, function(object){
-            // unfortunately will have to use temp_C || tempC in this each loop
-            console.log(object);
-        })
+        _.map(this.data)
     );
-    $("#weather").html(this);
+    var weather = this.data.currentConditions;
+    $("#weather").html(weather.value);
 };
+
+// functions to run in the dom
 
 $(document).ready(function () {
     getWeather("leeds", "3");
+    $('#DayInTwoDays').html(dayInTwoDays());
 });
 
 function getWeather(city, days) {
@@ -73,3 +74,8 @@ function getWeather(city, days) {
         apiCall.setHtml();
     });
 };
+
+function dayInTwoDays() {
+    return moment().add(2, "days").format("dddd");
+}
+
