@@ -1,4 +1,47 @@
-body {
-  background-color: deeppink; }
+@media (max-width: 600px) {
+  .weather-box {
+    width: 100vw; }
+
+  .wrapper {
+    margin: 5% 0% 0% 0%;
+    padding: 4% 4% 4% 4%; }
+
+  .weather-toggle {
+    font-size: 14px; } }
+@media (min-width: 600px) {
+  .weather-box {
+    width: 100vw; }
+
+  .wrapper {
+    margin: 5% 4% 4% 4%;
+    padding: 1% 6% 6% 6%; }
+
+  .weather-toggle {
+    font-size: 24px; }
+
+  .buttons {
+    text-align: right;
+    margin-bottom: 5%;
+    margin-right: -6%; } }
+.wrapper {
+  background-color: #000000;
+  color: white;
+  border-radius: 20px; }
+
+button {
+  cursor: pointer; }
+
+.weather-toggle {
+  border: none;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 6px 12px;
+  background: #987730;
+  color: #ffffff;
+  border-radius: 5px; }
+
+.weather-toggle.active {
+  background: #fec750; }
 
 /*# sourceMappingURL=style.css.map */

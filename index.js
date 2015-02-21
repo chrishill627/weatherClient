@@ -100,6 +100,8 @@ WeatherApiCall.prototype.setHtml = function () {
     }
 
     function weatherIcon(code) {
+        console.log(code);
+        console.log(typeof code);
         return symbolObject[code];
     }
 
@@ -115,6 +117,8 @@ $(document).ready(function () {
 
 // events
 $(".weather-toggle").click(function(){
+    $(".weather-toggle").removeClass("active");
+    $(this).addClass("active");
     getWeather("leeds", "3", $(this).val());
     // call the function for the val
 });

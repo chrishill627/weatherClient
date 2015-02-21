@@ -1,0 +1,14 @@
+@import "variables";
+
+@media (max-width: 600px) {
+  .weather-box {
+    width: 100vw;
+  }
+  .wrapper {
+    margin: 5% 0% 0% 0%;
+    padding: 4% 4% 4% 4%;
+  }
+  .weather-toggle {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,20 @@
+@import "variables";
+
+@media (min-width: 600px) {
+  .weather-box {
+    width: 100vw
+  }
+  .wrapper {
+    margin: 5% 4% 4% 4%;
+    padding: 1% 6% 6% 6%;
+  }
+  .weather-toggle {
+    font-size: 24px;
+  }
+  .buttons {
+    text-align: right;
+    margin-bottom: 5%;
+    margin-right: -6%;
+  }
+
+}

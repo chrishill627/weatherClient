@@ -43,7 +43,7 @@ this.symbolObject = {
     "179": "wi-day-snow",
     "176": "wi-day-rain",
     "143": "wi-fog",
-    "122": "wi-dust",
+    "122": "wi-cloudy",
     "119": "wi-cloudy",
     "116": "wi-day-sunny-overcast",
     "113": "wi-day-sunny"
