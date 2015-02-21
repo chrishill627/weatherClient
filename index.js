@@ -1,7 +1,8 @@
-var _, moment, symbolObject;
+var _, moment, weatherSymbol, shopperStatement;
 _ = window._;
 moment = window.moment;
-symbolObject = window.symbolObject;
+shopperStatement = window.statementObject;
+weatherSymbol = window.symbolObject;
 WeatherApiCall = function (options) {
     this.url = "https://api.worldweatheronline.com/free/v2/weather.ashx?key=1d133a0f4175d6de5ff8b237cc245&tp=24&format=json";
     this.options = options;
@@ -62,11 +63,12 @@ WeatherApiCall.prototype.setHtml = function () {
     weather = this.data;
     report = this.options.reportFor
     $("#description").html(weather.value);
-    $("#temperature").html(weather.temp_C || weather.tempC);
+    $("#temperature").html("Temperature:&nbsp;" + ( weather.temp_C || weather.tempC ) + "&deg;c");
     $("#selection").html(
         report === "twoDay" ? dayInTwoDays() : report.charAt(0).toUpperCase() + report.slice(1)
     );
-    $("#windSpeed").html(weather.windspeedMiles);
+    $("#windSpeed").html("Windspeed:&nbsp;" + weather.windspeedMiles + " mph");
+    $("#shoppersAdvice").html("Shoppers:&nbsp;" + shoppersAdvice(weather.weatherCode) + "!");
     $("#weatherCode").html(weather.weatherCode);
     $("#weatherIcon").addClass(weatherIcon(weather.weatherCode));
 
@@ -105,9 +107,11 @@ WeatherApiCall.prototype.setHtml = function () {
     }
 
     function weatherIcon(code) {
-        console.log(code);
-        console.log(typeof code);
-        return symbolObject[code];
+        return weatherSymbol[code];
+    }
+
+    function shoppersAdvice(code) {
+        return shopperStatement[code];
     }
 
 

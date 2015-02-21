@@ -53,6 +53,15 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: 300; }
 
+.icon-wrapper {
+  font-size: 70px;
+  padding-top: 20px;
+  text-align: center; }
+
+p {
+  margin: 5px 0px 5px 0px;
+  font-size: 26px; }
+
 body {
   margin: 0; }
 
