@@ -1,7 +1,10 @@
-var _, moment;
+var _, moment, symbolObject;
 
 _ = window._;
 moment = window.moment;
+symbolObject = window.symbolObject;
+
+console.log(symbolObject);
 
 WeatherApiCall = function (options) {
     this.url = "https://api.worldweatheronline.com/free/v2/weather.ashx?key=1d133a0f4175d6de5ff8b237cc245&tp=24&format=json";
@@ -65,11 +68,18 @@ WeatherApiCall.prototype.setHtml = function () {
     $("#temperature").html(weather.temp_C || weather.tempC);
     $("#windSpeed").html(weather.windspeedMiles);
     $("#weatherCode").html(weather.weatherCode);
-    $("#sunset").html(astromonyDetails(weather));
+    $("#weatherIcon").addClass(weatherIcon(weather.weatherCode));
+
+    if (this.options.reportFor === "today") {
+        $("#sunset").html(astromonyDetails(weather));
+    } else {
+        $("#sunset").html("The sun rises at " + weather.sunrise + " and sets at " + weather.sunset);
+    }
+
 
     function astromonyDetails(weather) {
 
-        var sunsetTime, removePeriod, addTwelveHours, splitTime, parseMins, date, minutes, hour, seconds;
+        var sunsetTime, removePeriod, addTwelveHours, splitTime, parseMins, date, minutes, hour;
         sunsetTime = weather.sunset;
         removePeriod = sunsetTime.split(" ")[0];
         splitTime = removePeriod.split(":");
@@ -91,11 +101,11 @@ WeatherApiCall.prototype.setHtml = function () {
             return "tomorrow sunrise is at "+weather.sunrise;
         }
         // or return tomorrows sunrise
-
-
-
-
         return sunsetTime;
+    }
+
+    function weatherIcon(code) {
+        return symbolObject[code];
     }
 
 
