@@ -21,13 +21,33 @@
             <button class="weather-toggle" value="tomorrow">Tomorrow</button>
             <button class="weather-toggle" value="twoDay"><span id="DayInTwoDays"></span></button>
         </div>
-        <p id="description"></p>
-        <p id="temperature"></p>
-        <p id="windSpeed"></p>
-        <p id="weatherCode"></p>
-        <p id="sunset"></p>
-        <div>
-            <i id="weatherIcon" class="wi"></i>
+
+        <div class="row">
+            <div class="col-sm-7 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <i id="weatherIcon" class="wi"></i>
+                    </div>
+                    <div class="col-xs-8">
+                        <p id="selection"></p>
+                        <p id="description"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p id="temperature"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p id="windSpeed"></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-5 col-xs-12">
+                <p id="sunset"></p>
+            </div>
         </div>
     </div>
 

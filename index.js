@@ -58,9 +58,14 @@ WeatherApiCall.prototype.call = function (callback) {
 };
 
 WeatherApiCall.prototype.setHtml = function () {
-    var weather = this.data;
+    var weather, report;
+    weather = this.data;
+    report = this.options.reportFor
     $("#description").html(weather.value);
     $("#temperature").html(weather.temp_C || weather.tempC);
+    $("#selection").html(
+        report === "twoDay" ? dayInTwoDays() : report.charAt(0).toUpperCase() + report.slice(1)
+    );
     $("#windSpeed").html(weather.windspeedMiles);
     $("#weatherCode").html(weather.weatherCode);
     $("#weatherIcon").addClass(weatherIcon(weather.weatherCode));
