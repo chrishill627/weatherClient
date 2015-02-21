@@ -4,7 +4,18 @@ body {
 }
 
 .wrapper {
-  background-color: #000000;
+  background: url("http://www.cityofleeds.co.uk/leeds-shopping02052005/source/image/leeds-shopping-8400.jpg") no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   color: white;
   border-radius: 20px;
 }
+
+.darken {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+}
+
+

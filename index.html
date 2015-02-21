@@ -8,54 +8,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.css">
     <!-- endbower -->
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 </head>
 
 <body>
 
 <div class="weather-box">
-
     <div class="wrapper">
-        <div class="buttons">
-            <button class="weather-toggle active" value="today">Today</button>
-            <button class="weather-toggle" value="tomorrow">Tomorrow</button>
-            <button class="weather-toggle" value="twoDay"><span id="DayInTwoDays"></span></button>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-7 col-xs-12">
-                <div class="row">
-                    <div class="col-xs-4 icon-wrapper">
-                        <i id="weatherIcon" class="wi"></i>
-                    </div>
-                    <div class="col-xs-8">
-                        <p id="selection"></p>
-                        <p id="description"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p id="temperature"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p id="windSpeed"></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <p id="shoppersAdvice"></p>
-                    </div>
-                </div>
-
+        <div class="darken">
+            <div class="buttons">
+                <button class="weather-toggle active" value="today">Today</button>
+                <button class="weather-toggle" value="tomorrow">Tomorrow</button>
+                <button class="weather-toggle" value="twoDay"><span id="DayInTwoDays"></span></button>
             </div>
-            <div class="col-sm-5 col-xs-12 text-center">
-                <p id="sunset"></p>
-                <div class="icon-wrapper gold-icon">
-                    <i id="timeIcon" class="wi wi-solar-eclipse"></i>
-                </div>
 
+            <div class="row">
+                <div class="col-sm-7 col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-4 icon-wrapper">
+                            <i id="weatherIcon" class="wi"></i>
+                        </div>
+                        <div class="col-xs-8">
+                            <p id="selection"></p>
+
+                            <p id="description"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p id="temperature"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p id="windSpeed"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p id="shoppersAdvice"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-5 col-xs-12 text-center">
+                    <p id="sunset"></p>
+
+                    <div class="icon-wrapper gold-icon">
+                        <i id="timeIcon" class="wi wi-solar-eclipse"></i>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

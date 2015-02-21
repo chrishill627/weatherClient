@@ -4,7 +4,9 @@
     width: 100vw; }
 
   .wrapper {
-    margin: 5% 0% 0% 0%;
+    margin: 5% 0% 0% 0%; }
+
+  .darken {
     padding: 4% 4% 4% 4%; }
 
   .weather-toggle {
@@ -14,7 +16,9 @@
     width: 100vw; }
 
   .wrapper {
-    margin: 5% 4% 4% 4%;
+    margin: 5% 4% 4% 4%; }
+
+  .darken {
     padding: 1% 6% 6% 6%; }
 
   .weather-toggle {
@@ -25,8 +29,16 @@
     margin-bottom: 5%;
     margin-right: -6%; } }
 .wrapper {
-  background-color: #000000;
+  background: url("http://www.cityofleeds.co.uk/leeds-shopping02052005/source/image/leeds-shopping-8400.jpg") no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   color: white;
+  border-radius: 20px; }
+
+.darken {
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 20px; }
 
 button {
