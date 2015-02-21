@@ -1,11 +1,7 @@
 var _, moment, symbolObject;
-
 _ = window._;
 moment = window.moment;
 symbolObject = window.symbolObject;
-
-console.log(symbolObject);
-
 WeatherApiCall = function (options) {
     this.url = "https://api.worldweatheronline.com/free/v2/weather.ashx?key=1d133a0f4175d6de5ff8b237cc245&tp=24&format=json";
     this.options = options;
@@ -16,7 +12,6 @@ WeatherApiCall.prototype.call = function (callback) {
     self = this;
     $.getJSON(this.url, this.options).done(function (data) {
         // avoid having a data key with a value of an object called data
-        console.log(data);
         weather = _.pick(data.data, "current_condition", "weather");
         // make this in to a nice object to work with by picking what we want to use
 
@@ -71,25 +66,27 @@ WeatherApiCall.prototype.setHtml = function () {
     $("#weatherIcon").addClass(weatherIcon(weather.weatherCode));
 
     if (this.options.reportFor === "today") {
-        $("#sunset").html(astromonyDetails(weather));
+        $("#sunset").html(astromonyDetails(this));
     } else {
         $("#sunset").html("The sun rises at " + weather.sunrise + " and sets at " + weather.sunset);
     }
 
 
-    function astromonyDetails(weather) {
-
-        var sunsetTime, removePeriod, addTwelveHours, splitTime, parseMins, date, minutes, hour;
+    function astromonyDetails(obj) {
+        var sunsetTime, removePeriod, addTwelveHours, splitTime, parseMins, date, minutes, hour, weather;
+        weather = obj.data;
+        // return tomorrows informaton if the options is not fore today
+        if (obj.options.reportFor != "today") {
+            return "tomorrow sunrise is at "+weather.sunrise + " and sunset is at " + weather.sunset;
+        }
         sunsetTime = weather.sunset;
         removePeriod = sunsetTime.split(" ")[0];
         splitTime = removePeriod.split(":");
         addTwelveHours = ( parseInt(splitTime[0]) + 12 );
         parseMins = parseInt(splitTime[1]);
-        //console.log(addTwelveHours);
         date = new Date;
         hour = date.getHours();
         minutes = date.getMinutes();
-
         // if the sun is setting later return sunsets at
         if (addTwelveHours > hour) {
             if (addTwelveHours === hour && parseMins > minutes) {
@@ -100,8 +97,6 @@ WeatherApiCall.prototype.setHtml = function () {
         } else {
             return "tomorrow sunrise is at "+weather.sunrise;
         }
-        // or return tomorrows sunrise
-        return sunsetTime;
     }
 
     function weatherIcon(code) {
@@ -121,7 +116,6 @@ $(document).ready(function () {
 // events
 $(".weather-toggle").click(function(){
     getWeather("leeds", "3", $(this).val());
-
     // call the function for the val
 });
 
