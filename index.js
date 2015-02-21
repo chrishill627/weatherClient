@@ -76,48 +76,9 @@ WeatherApiCall.prototype.setHtml = function () {
     } else {
         $("#sunset").html("The sun rises at " + weather.sunrise + " and sets at " + weather.sunset);
     }
-
-
-    function astromonyDetails(obj) {
-        var sunsetTime, removePeriod, addTwelveHours, splitTime, parseMins, date, minutes, hour, weather;
-        weather = obj.data;
-        // return tomorrows informaton if the options is not fore today
-        if (obj.options.reportFor != "today") {
-            return "tomorrow sunrise is at "+weather.sunrise + " and sunset is at " + weather.sunset;
-        }
-        sunsetTime = weather.sunset;
-        removePeriod = sunsetTime.split(" ")[0];
-        splitTime = removePeriod.split(":");
-        addTwelveHours = ( parseInt(splitTime[0]) + 12 );
-        parseMins = parseInt(splitTime[1]);
-        date = new Date;
-        hour = date.getHours();
-        minutes = date.getMinutes();
-        // if the sun is setting later return sunsets at
-        if (addTwelveHours > hour) {
-            if (addTwelveHours === hour && parseMins > minutes) {
-                return "tomorrow sunrise is at "+weather.sunrise;
-            } else {
-                return "Sunsets at "+weather.sunset;
-            }
-        } else {
-            return "tomorrow sunrise is at "+weather.sunrise;
-        }
-    }
-
-    function weatherIcon(code) {
-        return weatherSymbol[code];
-    }
-
-    function shoppersAdvice(code) {
-        return shopperStatement[code];
-    }
-
-
 };
 
 // functions to run in the dom
-
 $(document).ready(function () {
     getWeather("leeds", "3", "today");
     $('#DayInTwoDays').html(dayInTwoDays());
@@ -127,9 +88,11 @@ $(document).ready(function () {
 $(".weather-toggle").click(function(){
     $(".weather-toggle").removeClass("active");
     $(this).addClass("active");
+    // call the function for the buttons value
     getWeather("leeds", "3", $(this).val());
-    // call the function for the val
 });
+
+// function declarations
 
 function getWeather(city, days, day) {
     var apiCall, options;
@@ -147,5 +110,39 @@ function getWeather(city, days, day) {
 
 function dayInTwoDays() {
     return moment().add(2, "days").format("dddd");
-}
+};
 
+function astromonyDetails(obj) {
+    var sunsetTime, removePeriod, addTwelveHours, splitTime, parseMins, date, minutes, hour, weather;
+    weather = obj.data;
+    // return tomorrows information if the options is not fore today
+    if (obj.options.reportFor != "today") {
+        return "tomorrow sunrise is at "+weather.sunrise + " and sunset is at " + weather.sunset;
+    }
+    sunsetTime = weather.sunset;
+    removePeriod = sunsetTime.split(" ")[0];
+    splitTime = removePeriod.split(":");
+    addTwelveHours = ( parseInt(splitTime[0]) + 12 );
+    parseMins = parseInt(splitTime[1]);
+    date = new Date;
+    hour = date.getHours();
+    minutes = date.getMinutes();
+    // if the sun is setting later return the time the sunsets at
+    if (addTwelveHours > hour) {
+        if (addTwelveHours === hour && parseMins > minutes) {
+            return "tomorrow sunrise is at "+weather.sunrise;
+        } else {
+            return "Sunsets at "+weather.sunset;
+        }
+    } else {
+        return "tomorrow sunrise is at "+weather.sunrise;
+    }
+};
+
+function weatherIcon(code) {
+    return weatherSymbol[code];
+};
+
+function shoppersAdvice(code) {
+    return shopperStatement[code];
+};
