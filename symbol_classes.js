@@ -94,8 +94,8 @@ this.statementObject = {
     "179": "Leeds is beautiful in the snow",
     "176": "Bring a umbrella",
     "143": "Have a great day",
-    "122": "All looks clear!",
-    "119": "All looks clear!",
+    "122": "All looks clear",
+    "119": "All looks clear",
     "116": "Looking nice and warm",
     "113": "Forget the coat"
 };
