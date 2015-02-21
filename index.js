@@ -71,7 +71,6 @@ WeatherApiCall.prototype.setHtml = function () {
     $("#shoppersAdvice").html("Shoppers:&nbsp;" + shoppersAdvice(weather.weatherCode) + "!");
     $("#weatherCode").html(weather.weatherCode);
     $("#weatherIcon").addClass(weatherIcon(weather.weatherCode));
-
     if (this.options.reportFor === "today") {
         $("#sunset").html(astromonyDetails(this));
     } else {
